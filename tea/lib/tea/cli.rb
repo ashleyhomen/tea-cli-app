@@ -25,19 +25,25 @@ class Session
     puts ""
     list_options
     input = nil
+
     while input != "exit"
       input = gets.strip.downcase
+
       if input == "list"
         list_options
-      elsif input == "cupboard"
-        puts "#{self.me.cupboard}"
+
+      elsif input == "test"
+        Teas.obj_create
+
       elsif input == "all"
-        puts "Listing all teas"
+        Teas.a_to_z
+
       elsif input == "type"
         puts "What type of tea would you like to see?"
         list_tea_types
         type = gets.downcase.strip
-        Importer.new(type).scrape_green_teas
+        Teas.list_by_tea_type(type)
+
       elsif input == "country"
         puts "Teas by country"
       elsif input == "exit"

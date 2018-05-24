@@ -1,5 +1,6 @@
 #!/usr/bin/env ruby
-require './lib/environment'
+require "bundler/setup"
+require "environment"
 
 puts "Hello"
 
