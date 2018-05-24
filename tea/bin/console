@@ -14,5 +14,3 @@ require "irb"
 IRB.start(__FILE__)
 
 Welcome::welcome_message
-
-ruby tea/bin/start-tea-session

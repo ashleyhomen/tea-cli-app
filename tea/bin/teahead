@@ -3,4 +3,4 @@ require './lib/environment'
 
 puts "Hello World!"
 
-Tea.welcome_message
+Session.new.call
