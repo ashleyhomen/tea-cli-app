@@ -1,6 +1,0 @@
-#!/usr/bin/env ruby
-require './lib/environment'
-
-puts "Hello World!"
-
-Session.new.call
