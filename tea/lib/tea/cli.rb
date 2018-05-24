@@ -32,9 +32,12 @@ class Session
       elsif input == "cupboard"
         puts "#{self.me.cupboard}"
       elsif input == "all"
-        Importer.new.scrape_green_teas
+        puts "Listing all teas"
       elsif input == "type"
-        puts "Teas by type"
+        puts "What type of tea would you like to see?"
+        list_tea_types
+        type = gets.downcase.strip
+        Importer.new(type).scrape_green_teas
       elsif input == "country"
         puts "Teas by country"
       elsif input == "exit"
@@ -50,6 +53,15 @@ class Session
     puts "   1. To list teas alphabetically enter: all"
     puts "   2. To list teas by type enter: type"
     puts "   3. To list teas by country enter: country"
+  end
+
+  def list_tea_types
+    puts "   White"
+    puts "   Green"
+    puts "   Yellow"
+    puts "   Oolong"
+    puts "   Black"
+    puts "   Puerh"
   end
 
 end
