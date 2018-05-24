@@ -1,0 +1,6 @@
+#!/usr/bin/env ruby
+require './lib/environment'
+
+puts "Hello World!"
+
+Tea.welcome_message
