@@ -3,23 +3,42 @@ class Teas
 
   @@all = []
 
-  def initialize(type = rand(1..6), name = rand(a..z), time = 120, temp = 212)
+  def initialize(type, name, time, temp)
     @type = type
     @name = name
     @steep_time = time
     @steep_temp = temp
     @@all << self
+    puts "#{self}, #{self.name}, #{self.type}"
   end
 
-  def self.obj_create
+  def self.all
+    @@all
+  end
+
+  def self.obj_create_g
     puts "calls obj create"
-    self.new
+    type = "green"
+    name = "Gunpowder"
+    time = 120
+    temp = 170
+    puts "Type: #{type}, Name: #{name}, Time: #{time}, Temp: #{temp}"
+    self.new(type, name, time, temp)
+  end
+
+  def self.obj_create_b
+    puts "calls obj create"
+    type = "black"
+    name = "ruby"
+    time = 150
+    temp = 200
+    puts "Type: #{type}, Name: #{name}, Time: #{time}, Temp: #{temp}"
+    new(type, name, time, temp)
   end
 
   def self.a_to_z
     puts "calls a to z"
-    az = []
-    az << @@all.sort
+    az = @@all.sort_by {|obj| obj.name}
     az.each.with_index(1) { |t, i| puts "  #{i}. #{t.name}"}
   end
 

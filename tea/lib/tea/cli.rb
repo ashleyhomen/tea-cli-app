@@ -33,7 +33,8 @@ class Session
         list_options
 
       elsif input == "test"
-        Teas.obj_create
+        Teas.obj_create_g
+        Teas.obj_create_b
 
       elsif input == "all"
         Teas.a_to_z
