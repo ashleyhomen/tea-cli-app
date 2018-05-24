@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 require './lib/environment'
 
-puts "Hello World!"
+puts "Hello"
 
 Session.new.call
