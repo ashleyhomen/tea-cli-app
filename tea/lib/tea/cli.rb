@@ -16,7 +16,7 @@ class Session
 
   def find_me(name)
     @me = Person.find_or_create_by_name(name)
-    puts @me
+    puts "#{@me}"
   end
 
   def menu
@@ -32,11 +32,13 @@ class Session
       elsif input == "cupboard"
         puts "#{self.me.cupboard}"
       elsif input == "all"
-        puts "Teas a-z"
+        Importer.new.scrape_green_teas
       elsif input == "type"
         puts "Teas by type"
       elsif input == "country"
         puts "Teas by country"
+      elsif input == "exit"
+        nil
       else
         puts "Sorry, I didn't get that"
         list_options
