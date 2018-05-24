@@ -9,23 +9,19 @@ class Session
 
   def greeting
     puts "Welcome Teahead!"
+    puts "Please enter your name:"
     name = gets.strip.capitalize
-    puts "your name is: " + name
     find_me(name)
   end
 
   def find_me(name)
     @me = Person.find_or_create_by_name(name)
-    puts "#{@me}"
-  end
-
-  def cupboard
-    self.me.cupboard
+    puts @me
   end
 
   def menu
     puts ""
-    puts "what would you ike to do?"
+    puts "what would you like to do?"
     puts ""
     list_options
     input = nil
@@ -49,11 +45,11 @@ class Session
   end
 
   def list_options
-    puts "To list teas alphabetically enter: all"
-    puts "To list teas by type enter: type"
-    puts "To list teas by country enter: country"
+    puts "   1. To list teas alphabetically enter: all"
+    puts "   2. To list teas by type enter: type"
+    puts "   3. To list teas by country enter: country"
   end
 
 end
-
+# 0x00000000d2eba0
 #  ./bin/teahead
