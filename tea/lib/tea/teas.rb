@@ -44,6 +44,6 @@ class Teas
 
   def self.list_by_tea_type(type)
     puts "calls lists by tea type"
-    Importer.new(type).scrape_teas
+    Importer.scrape_teas(type)
   end
 end
