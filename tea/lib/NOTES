@@ -1,0 +1,13 @@
+# cli
+  # typing "start-tea-session"
+  # asks for you name (find or create by name) in person class
+  # gives a menu to choose from
+    # choose from a number list type "1" etc.
+        # list all teas a-z
+        # list teas by country
+        # list green teas etc.
+        # list by tea type
+
+
+#  git commit -a -m ""
+#  git push
