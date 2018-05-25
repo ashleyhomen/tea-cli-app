@@ -29,4 +29,16 @@ class Importer
         Teas.new(type, name, info, url)
       end
   end
+
+  def self.srape_tea_profile
+    #path = object.url
+    i = []
+    doc = Nokogiri::HTML(open('https://meileaf.com/tea/25-year-tgy/'))
+    notes = doc.css('div.product-tasting-notes dl').text.split('.')
+    doc.css('td.brewing-instructions__td').each {|item| instructions << item.text.split(" ").join(" | ")}
+    water_temp = i[0]
+    gongfu_intructions = {:grams_per_100ml_water => i[1], :first_infusion => i[2], :additional_infusions => i[3], :total_infusions =>[4]}
+    western_intructions = {:grams_per_100ml_water => i[5], :first_infusion => i[6], :additional_infusions => i[7], :total_infusions =>[8]}
+    binding.pry
+  end
 end
