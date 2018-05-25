@@ -18,12 +18,15 @@ class Importer
     end
   end
 
-  def self.scrape_teas(type)
+  def self.scrape_teas
     puts "Here's a list of the teas you asked for."
-    url = get_url(type)
-    doc = Nokogiri::HTML(open(url))
-    tea_type = doc.css('div#content h1').text
-    puts tea_type
+    #url = get_url(type)
+    doc = Nokogiri::HTML(open("https://meileaf.com/teas/"))
+    binding.pry
+    t = doc.css('div.container product-index')
+    name = t.css('div.product-card__info-main h3').first.text
+    info = doc.css('div.product-card__info-main p').first.text
+    info = doc.css('span.product-card__type').first.text
+    url = doc.css('a.product-card__image-link').first['href']
   end
-
 end

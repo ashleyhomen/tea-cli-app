@@ -10,5 +10,9 @@ require "environment"
 # require "pry"
 # Pry.start
 
+
+
 require "irb"
 IRB.start(__FILE__)
+
+Importer.scrape_teas
