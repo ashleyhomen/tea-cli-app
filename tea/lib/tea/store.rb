@@ -27,19 +27,31 @@ class Importer
         type = tea.css('span.product-card__type').text
         url = "https://meileaf.com#{tea.css('div.product-card__info-top a').first['href']}"
         new_tea = Teas.new(type, name, info, url)
-        scrape_tea_profile(new_tea)
+        self.scrape_tea_profile(new_tea)
       end
   end
 
   def self.scrape_tea_profile(new_tea)
+    puts new_tea
     path = new_tea.url
     i = []
     doc = Nokogiri::HTML(open(path))
-    notes = doc.css('div.product-tasting-notes dl').text.split('.')
+    new_tea.notes = doc.css('div.product-tasting-notes dl').text.split('.')
     doc.css('td.brewing-instructions__td').each {|item| i << item.text.split(" ").join(" | ").gsub("&plus;","+")}
-    object.gongfu_intructions = {:water_temp => i[0], :grams_per_100ml_water => i[1], :first_infusion => i[2], :additional_infusions => i[3], :total_infusions => i[4]}
-    object.western_intructions = {:water_temp => i[0], :grams_per_100ml_water => i[5], :first_infusion => i[6], :additional_infusions => i[7], :total_infusions => i[8]}
-    #print_info
+    new_tea.gongfu_instructions = {:water_temp => i[0], :grams_per_100ml_water => i[1], :first_infusion => i[2], :additional_infusions => i[3], :total_infusions => i[4]}
+    new_tea.western_instructions = {:water_temp => i[0], :grams_per_100ml_water => i[5], :first_infusion => i[6], :additional_infusions => i[7], :total_infusions => i[8]}
+    print_info(new_tea)
+  end
+
+  def self.print_info(obj)
+    puts "this is the tea info"
+    puts "#{obj.name}"
+    puts "#{obj.type}"
+    puts "#{obj.info}"
+    puts "#{obj.url}"
+    puts "#{obj.notes}"
+    puts "#{obj.gongfu_instructions}"
+    puts "#{obj.western_instructions}"
   end
 end
 

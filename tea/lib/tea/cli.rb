@@ -37,7 +37,8 @@ class Session
         Teas.obj_create_b
 
       elsif input == "all"
-        Teas.a_to_z
+        Importer.scrape_teas
+        #Teas.a_to_z
 
       elsif input == "type"
         puts "What type of tea would you like to see?"
