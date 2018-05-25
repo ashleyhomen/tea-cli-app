@@ -28,9 +28,6 @@ attr_accessor :name, :cupboard
  def self.find_or_create_by_name(name)
    find_by_name(name) || create_by_name(name)
  end
-
 end
-
-#./tea-cli-app/tea/bin/teahead
 
 #./tea./bin/teahead

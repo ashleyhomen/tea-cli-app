@@ -27,14 +27,13 @@ class Importer
   def self.scrape_teas(input)
     path = get_url(input)
       puts "Here's a list of the teas you asked for."
-      doc = Nokogiri::HTML(open(url))
+      doc = Nokogiri::HTML(open(path))
       doc.css('div.product-card__info').each do |tea|
-        name = tea.css('h3').text
-        info = tea.css('div.product-card__info-main p').text
-        type = tea.css('span.product-card__type').text
-        url = "https://meileaf.com#{tea.css('div.product-card__info-top a').first['href']}"
-        new_tea = Teas.new(type, name, info, url)
-        self.scrape_tea_profile(new_tea)
+        new_tea = Teas.new
+        new_tea.name = tea.css('h3').text
+        new_tea.info = tea.css('div.product-card__info-main p').text
+        new_tea.type = tea.css('span.product-card__type').text
+        new_tea.url = "https://meileaf.com#{tea.css('div.product-card__info-top a').first['href']}"
       end
   end
 
@@ -65,6 +64,6 @@ end
 #./bin/console
 #Importer.scrape_tea_profile
 
-git commit -a -m "updated url in Importer"
-git push origin master
-ashley3schultz
+#    git commit -a -m "Made changes to Importer scrape teas"
+#    git push origin master
+#    ashley3schultz
