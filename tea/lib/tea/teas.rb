@@ -22,7 +22,8 @@ class Teas
   end
 
   def self.list_by_type(input)
-    az = @@all.collect {|obj| obj.type == input}
+    az = []
+    @@all.each {|obj| az << obj if obj.type == input}
     az.each.with_index(1) do |t, i|
     puts "#{i}. #{t.name}"
     puts "      #{t.info}"
@@ -31,7 +32,8 @@ class Teas
   end
 
   def self.list_by_country(input)
-    az = @@all.collect {|obj| obj.notes.include?(input)}
+    az = []
+    @@all.each {|obj| az << obj if obj.notes.include?(input)}
     az.each.with_index(1) do |t, i|
     puts "#{i}. #{t.name}"
     puts "      #{t.type}"
@@ -40,3 +42,7 @@ class Teas
     end
   end
 end
+
+git commit -a -m "fixed enumeraters in Teas class"
+git push origin master
+ashley3schultz

@@ -14,11 +14,6 @@ class Session
     puts "Hello #{@name}"
   end
 
-  #def find_me(name)
-  #  @me = Person.find_or_create_by_name(name)
-  #  puts "#{@me}"
-  #end
-
   def menu
     puts ""
     puts "what would you like to do?"
