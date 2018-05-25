@@ -1,26 +1,33 @@
 class Importer
 
-  def self.get_url(type)
-    if type == "green"
-      "http://teapedia.org/en/Green_tea"
-    elsif type == "black"
-      "http://teapedia.org/en/Black_tea"
-    elsif type == "oolong"
-      "http://teapedia.org/en/Oolong_tea"
-    elsif type == "yellow"
-      "http://teapedia.org/en/Yellow_tea"
-    elsif type == "white"
-      "http://teapedia.org/en/White_tea"
-    elsif type == "puerh"
-      "http://teapedia.org/en/Puerh_tea"
-    else
-      "http://teapedia.org/en/"
+  def self.get_url(input)
+    if input == "green"
+      "https://meileaf.com/teas/green"
+    elsif input == "black"
+      "https://meileaf.com/teas/black"
+    elsif input == "oolong"
+      "https://meileaf.com/teas/oolong"
+    elsif input == "yellow"
+      "https://meileaf.com/teas/yellow"
+    elsif input == "white"
+      "https://meileaf.com/teas/white"
+    elsif input == "puerh"
+      "https://meileaf.com/teas/ripened"
+    elsif input == "china"
+      "https://meileaf.com/teas/china"
+    elsif input == "japan"
+      "https://meileaf.com/teas/japan"
+    elsif input == "taiwan"
+      "https://meileaf.com/teas/taiwan"
+    else input == "all"
+      "https://meileaf.com/teas"
     end
   end
 
-  def self.scrape_teas
+  def self.scrape_teas(input)
+    path = get_url(input)
       puts "Here's a list of the teas you asked for."
-      doc = Nokogiri::HTML(open("https://meileaf.com/teas"))
+      doc = Nokogiri::HTML(open(url))
       doc.css('div.product-card__info').each do |tea|
         name = tea.css('h3').text
         info = tea.css('div.product-card__info-main p').text
@@ -57,3 +64,7 @@ end
 
 #./bin/console
 #Importer.scrape_tea_profile
+
+git commit -a -m "updated url in Importer"
+git push origin master
+ashley3schultz

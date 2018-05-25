@@ -42,7 +42,3 @@ class Teas
     end
   end
 end
-
-git commit -a -m "fixed enumeraters in Teas class"
-git push origin master
-ashley3schultz
