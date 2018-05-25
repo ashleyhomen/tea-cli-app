@@ -18,6 +18,7 @@ class Teas
       puts "      #{t.type}"
       puts "      #{t.info}"
       puts "--------------------------"
+    end
   end
 
   def self.list_by_type(input)
@@ -26,6 +27,7 @@ class Teas
     puts "#{i}. #{t.name}"
     puts "      #{t.info}"
     puts "--------------------------"
+    end
   end
 
   def self.list_by_country(input)
@@ -35,5 +37,6 @@ class Teas
     puts "      #{t.type}"
     puts "      #{t.info}"
     puts "--------------------------"
+    end
   end
 end

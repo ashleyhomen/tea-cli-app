@@ -1,6 +1,6 @@
 class Session
 
-  attr_accessor :me
+  attr_accessor :name
 
   def call
     greeting
@@ -10,14 +10,14 @@ class Session
   def greeting
     puts "Welcome Teahead!"
     puts "Please enter your name:"
-    name = gets.strip.capitalize
-    find_me(name)
+    @name = gets.strip.capitalize
+    puts "Hello #{@name}"
   end
 
-  def find_me(name)
-    @me = Person.find_or_create_by_name(name)
-    puts "#{@me}"
-  end
+  #def find_me(name)
+  #  @me = Person.find_or_create_by_name(name)
+  #  puts "#{@me}"
+  #end
 
   def menu
     puts ""
@@ -55,7 +55,7 @@ class Session
         Teas.list_by_country(country)
 
       elsif input == "exit"
-        nil
+        puts "Goodbye #{@name}!"
       else
         puts "Sorry, I didn't get that"
         list_options
