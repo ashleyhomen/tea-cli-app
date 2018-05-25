@@ -60,10 +60,3 @@ class Importer
     puts "#{obj.western_instructions}"
   end
 end
-
-#./bin/console
-#Importer.scrape_tea_profile
-
-#    git commit -a -m "Made changes to Importer scrape teas"
-#    git push origin master
-#    ashley3schultz

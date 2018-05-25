@@ -1,13 +1,25 @@
 # cli
-  # typing "start-tea-session"
-  # asks for you name (find or create by name) in person class
+  # typing "./bin/teahead" bgins a tea session
+  # asks for your name and welcomes user
   # gives a menu to choose from
-    # choose from a number list type "1" etc.
-        # list all teas a-z
-        # list teas by country
-        # list green teas etc.
-        # list by tea type
+      # choose from a list
+          # list all teas a-z
+          # list teas by country
+              # choose from sub-list
+          # list by tea type
+              # choose from sub-list
+    # imports based on input
+    # prints list of tea
+    # askd for input to see tea profile
+    # prints tea profile.
 
 
-#  git commit -a -m ""
-#  git push
+    ### next task ###
+     # check - Importer.scrape_teas
+     # debug - Teas.list_by_type
+
+
+
+     #    git commit -a -m "updated notes"
+     #    git push origin master
+     #    ashley3schultz
