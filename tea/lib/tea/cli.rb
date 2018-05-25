@@ -38,21 +38,21 @@ class Session
 
       elsif input == "all"
         Importer.scrape_teas(input)
-        Teas.a_to_z
+        Teas.list_a_to_z
 
       elsif input == "type"
         puts "What type of tea would you like to see?"
         list_types
         type = gets
         Importer.scrape_teas(type)
-        Teas.list_by_tea_type(type)
+        Teas.list_by_type(type)
 
       elsif input == "country"
         puts "Enter a country from the list"
         list_countries
         country = gets
         Importer.scrape_teas(country)
-        Teas.list_by_tea_country(country)
+        Teas.list_by_country(country)
 
       elsif input == "exit"
         nil
