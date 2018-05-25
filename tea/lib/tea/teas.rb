@@ -3,38 +3,37 @@ class Teas
 
   @@all = []
 
-  def initialize(type, name, time, temp)
+  def initialize(type, name, info, url)
     @type = type
     @name = name
-    @steep_time = time
-    @steep_temp = temp
+    @info = info
+    @url = url
     @@all << self
-    puts "#{self}, #{self.name}, #{self.type}"
+    #puts "#{self}, #{self.name}, #{self.type}, #{self.info}, #{self.url}"
   end
 
   def self.all
     @@all
   end
 
-  def self.obj_create_g
-    puts "calls obj create"
-    type = "green"
-    name = "Gunpowder"
-    time = 120
-    temp = 170
-    puts "Type: #{type}, Name: #{name}, Time: #{time}, Temp: #{temp}"
-    self.new(type, name, time, temp)
-  end
+  #def self.obj_create_g
+    #puts "calls obj create"
+    #type = "green"
+    #name = "Gunpowder"
+    #time = 120
+    #temp = 170
+    #puts "Type: #{type}, Name: #{name}, Time: #{time}, Temp: #{temp}"
+    #self.new(type, name, time, temp)
+  #end
 
-  def self.obj_create_b
-    puts "calls obj create"
-    type = "black"
-    name = "ruby"
-    time = 150
-    temp = 200
-    puts "Type: #{type}, Name: #{name}, Time: #{time}, Temp: #{temp}"
-    new(type, name, time, temp)
-  end
+  #def self.obj_create_b
+    ##type = "black"
+    #name = "ruby"
+    #time = 150
+    #temp = 200
+    #puts "Type: #{type}, Name: #{name}, Time: #{time}, Temp: #{temp}"
+    #new(type, name, time, temp)
+  #end
 
   def self.a_to_z
     puts "calls a to z"

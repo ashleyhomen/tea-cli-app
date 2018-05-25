@@ -25,10 +25,8 @@ class Importer
         name = tea.css('h3').text
         info = tea.css('div.product-card__info-main p').text
         type = tea.css('span.product-card__type').text
-        url = "https://meileaf.com#{tea.css('div.product-card__info-top a')['href']}"
-        Tea.new(type, name, info, url)
-          binding.pry
+        url = "https://meileaf.com#{tea.css('div.product-card__info-top a').first['href']}"
+        Teas.new(type, name, info, url)
       end
-
   end
 end
