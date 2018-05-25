@@ -37,17 +37,23 @@ class Session
         Teas.obj_create_b
 
       elsif input == "all"
-        Importer.scrape_teas
-        #Teas.a_to_z
+        Importer.scrape_teas(input)
+        Teas.a_to_z
 
       elsif input == "type"
         puts "What type of tea would you like to see?"
-        list_tea_types
-        type = gets.downcase.strip
+        list_types
+        type = gets
+        Importer.scrape_teas(type)
         Teas.list_by_tea_type(type)
 
       elsif input == "country"
-        puts "Teas by country"
+        puts "Enter a country from the list"
+        list_countries
+        country = gets
+        Importer.scrape_teas(country)
+        Teas.list_by_tea_country(country)
+
       elsif input == "exit"
         nil
       else
@@ -63,7 +69,7 @@ class Session
     puts "   3. To list teas by country enter: country"
   end
 
-  def list_tea_types
+  def list_types
     puts "   White"
     puts "   Green"
     puts "   Yellow"
@@ -72,6 +78,11 @@ class Session
     puts "   Puerh"
   end
 
+  def list_countries
+    puts "   China"
+    puts "   Japan"
+    puts "   Taiwan"
+  end
+
 end
-# 0x00000000d2eba0
 #  ./bin/teahead
