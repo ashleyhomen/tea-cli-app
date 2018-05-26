@@ -12,33 +12,22 @@ class Teas
   end
 
   def self.list_a_to_z
-    az = @@all.sort_by {|obj| obj.name}
-    az.each.with_index(1) do |t, i|
-      puts "#{i}. #{t.name}"
-      puts "      #{t.type}"
-      puts "      #{t.info}"
-      puts "--------------------------"
-    end
+    self.all.each.with_index(1) { |t, i| print_tea_card(t, i)}
   end
 
   def self.list_by_type(input)
-    az = []
-    @@all.each {|obj| az << obj if obj.type == input}
-    az.each.with_index(1) do |t, i|
-    puts "#{i}. #{t.name}"
-    puts "      #{t.info}"
-    puts "--------------------------"
-    end
+    self.all.each.with_index(1) { |t, i| print_tea_card(t, i) if t.type == input}
   end
 
   def self.list_by_country(input)
-    az = []
-    @@all.each {|obj| az << obj if obj.notes.include?(input)}
-    az.each.with_index(1) do |t, i|
-    puts "#{i}. #{t.name}"
-    puts "      #{t.type}"
-    puts "      #{t.info}"
-    puts "--------------------------"
-    end
+    self.all.each.with_index(1) { |t, i| t.print_tea_card(t, i) if t.info.include?(input)}
+  end
+
+  def self.print_tea_card(t, i)
+    puts "#{i}. Name: #{t.name}"
+    puts "      AKA:  #{t.aka}" if t.aka != ""
+    puts "      Type: #{t.type}"
+    puts "      Info: #{t.info}"
+    puts "------------------------"
   end
 end

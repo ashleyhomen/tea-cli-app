@@ -3,6 +3,7 @@ class Session
   attr_accessor :name
 
   def call
+    Importer.scrape_teas
     greeting
     menu
   end
@@ -32,21 +33,21 @@ class Session
         Teas.obj_create_b
 
       elsif input == "all"
-        Importer.scrape_teas(input)
+        #Importer.scrape_teas(input)
         Teas.list_a_to_z
 
       elsif input == "type"
         puts "What type of tea would you like to see?"
         list_types
         type = gets
-        Importer.scrape_teas(type)
+        #Importer.scrape_teas(type)
         Teas.list_by_type(type)
 
       elsif input == "country"
         puts "Enter a country from the list"
         list_countries
         country = gets
-        Importer.scrape_teas(country)
+        #Importer.scrape_teas(country)
         Teas.list_by_country(country)
 
       elsif input == "exit"

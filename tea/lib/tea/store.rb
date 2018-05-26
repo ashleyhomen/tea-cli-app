@@ -24,9 +24,7 @@ class Importer
     end
   end
 
-  def self.scrape_teas(input)
-    #path = get_url(input)
-    count = 1
+  def self.scrape_teas
       puts "Here's a list of the teas you asked for."
       doc = Nokogiri::HTML(open('https://meileaf.com/teas/'))
       doc.css('div.product-card__info').each do |tea|
@@ -36,8 +34,6 @@ class Importer
         new_tea.info = tea.css('div.product-card__info-main p').text
         new_tea.type = tea.css('span.product-card__type').text
         new_tea.url = "https://meileaf.com#{tea.css('div.product-card__info-top a').first['href']}"
-        print_info(new_tea, count)
-        count += 1
       end
   end
 
