@@ -18,7 +18,8 @@
      # check - Importer.scrape_teas
      # debug - Teas.list_by_type
 
-
+     #    ./bin/teahead
+     #    ./bin/console
 
      #    git commit -a -m "updated notes"
      #    git push origin master

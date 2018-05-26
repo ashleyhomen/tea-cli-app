@@ -1,5 +1,5 @@
 class Teas
-  attr_accessor :type, :name, :info, :url, :notes, :gongfu_instructions, :western_instructions
+  attr_accessor :name, :aka, :type, :info, :url, :notes, :gongfu_instructions, :western_instructions
 
   @@all = []
 

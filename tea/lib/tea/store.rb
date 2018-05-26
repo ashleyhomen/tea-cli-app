@@ -2,38 +2,42 @@ class Importer
 
   def self.get_url(input)
     if input == "green"
-      "https://meileaf.com/teas/green"
+      "https://meileaf.com/teas/green/"
     elsif input == "black"
-      "https://meileaf.com/teas/black"
+      "https://meileaf.com/teas/black/"
     elsif input == "oolong"
-      "https://meileaf.com/teas/oolong"
+      "https://meileaf.com/teas/oolong/"
     elsif input == "yellow"
-      "https://meileaf.com/teas/yellow"
+      "https://meileaf.com/teas/yellow/"
     elsif input == "white"
-      "https://meileaf.com/teas/white"
+      "https://meileaf.com/teas/white/"
     elsif input == "puerh"
-      "https://meileaf.com/teas/ripened"
+      "https://meileaf.com/teas/ripened/"
     elsif input == "china"
-      "https://meileaf.com/teas/china"
+      "https://meileaf.com/teas/china/"
     elsif input == "japan"
-      "https://meileaf.com/teas/japan"
+      "https://meileaf.com/teas/japan/"
     elsif input == "taiwan"
-      "https://meileaf.com/teas/taiwan"
+      "https://meileaf.com/teas/taiwan/"
     else input == "all"
-      "https://meileaf.com/teas"
+      "https://meileaf.com/teas/"
     end
   end
 
   def self.scrape_teas(input)
-    path = get_url(input)
+    #path = get_url(input)
+    count = 1
       puts "Here's a list of the teas you asked for."
-      doc = Nokogiri::HTML(open(path))
+      doc = Nokogiri::HTML(open('https://meileaf.com/teas/'))
       doc.css('div.product-card__info').each do |tea|
         new_tea = Teas.new
-        new_tea.name = tea.css('h3').text
+        new_tea.name = tea.css('h2').text
+        new_tea.aka = tea.css('h3').text
         new_tea.info = tea.css('div.product-card__info-main p').text
         new_tea.type = tea.css('span.product-card__type').text
         new_tea.url = "https://meileaf.com#{tea.css('div.product-card__info-top a').first['href']}"
+        print_info(new_tea, count)
+        count += 1
       end
   end
 
@@ -49,14 +53,16 @@ class Importer
     print_info(new_tea)
   end
 
-  def self.print_info(obj)
-    puts "this is the tea info"
+  def self.print_info(obj, count)
+    puts count
+    puts obj
     puts "#{obj.name}"
     puts "#{obj.type}"
     puts "#{obj.info}"
     puts "#{obj.url}"
-    puts "#{obj.notes}"
-    puts "#{obj.gongfu_instructions}"
-    puts "#{obj.western_instructions}"
+    puts "------------------------------"
+    #puts "#{obj.notes}"
+    #puts "#{obj.gongfu_instructions}"
+    #puts "#{obj.western_instructions}"
   end
 end
