@@ -12,11 +12,11 @@ class Session
     puts "Welcome Teahead!"
     puts "Please enter your name:"
     @name = gets.strip.capitalize
+    puts ""
     puts "Hello #{@name}"
   end
 
   def menu
-    puts ""
     puts "what would you like to do?"
     puts ""
     list_options
@@ -24,36 +24,18 @@ class Session
 
     while input != "exit"
       input = gets.strip.downcase
-
       if input == "list"
         list_options
-
-      elsif input == "test"
-        Teas.obj_create_g
-        Teas.obj_create_b
-
       elsif input == "all"
-        #Importer.scrape_teas(input)
         Teas.list_a_to_z
-
       elsif input == "type"
-        puts "What type of tea would you like to see?"
-        list_types
-        type = gets
-        #Importer.scrape_teas(type)
         Teas.list_by_type(type)
-
       elsif input == "country"
-        puts "Enter a country from the list"
-        list_countries
-        country = gets
-        #Importer.scrape_teas(country)
         Teas.list_by_country(country)
-
       elsif input == "exit"
         puts "Goodbye #{@name}!"
       else
-        puts "Sorry, I didn't get that"
+        puts "Sorry, I didn't get that... Please enter command again"
         list_options
       end
     end
@@ -64,21 +46,5 @@ class Session
     puts "   2. To list teas by type enter: type"
     puts "   3. To list teas by country enter: country"
   end
-
-  def list_types
-    puts "   White"
-    puts "   Green"
-    puts "   Yellow"
-    puts "   Oolong"
-    puts "   Black"
-    puts "   Puerh"
-  end
-
-  def list_countries
-    puts "   China"
-    puts "   Japan"
-    puts "   Taiwan"
-  end
-
 end
 #  ./bin/teahead

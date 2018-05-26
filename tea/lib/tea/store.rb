@@ -5,7 +5,7 @@ class Importer
       doc = Nokogiri::HTML(open('https://meileaf.com/teas/'))
       doc.css('div.product-card__info').each do |tea|
         new_tea = Teas.new
-        new_tea.name = tea.css('h2').text
+        new_tea.name = tea.css('h2 span').text
         new_tea.aka = tea.css('h3').text
         new_tea.info = tea.css('div.product-card__info-main p').text
         new_tea.type = tea.css('span.product-card__type').text
