@@ -18,33 +18,34 @@ class Session
 
   def menu
     puts "what would you like to do?"
-    puts ""
     list_options
     input = nil
 
     while input != "exit"
-      input = gets.strip.downcase
-      if input == "list"
+      input = gets.strip.to_s.downcase
+      if input == "menu"
         list_options
-      elsif input == "all"
+      elsif input == "1"
         Teas.list_a_to_z
-      elsif input == "type"
+      elsif input == "2"
         Teas.list_by_type(type)
-      elsif input == "country"
+      elsif input == "3"
         Teas.list_by_country(country)
       elsif input == "exit"
         puts "Goodbye #{@name}!"
       else
-        puts "Sorry, I didn't get that... Please enter command again"
+        puts "Sorry, I didn't get that... Please enter a number from the list."
         list_options
       end
     end
   end
 
   def list_options
-    puts "   1. To list teas alphabetically enter: all"
-    puts "   2. To list teas by type enter: type"
-    puts "   3. To list teas by country enter: country"
+    puts ""
+    puts "   1. List all teas"
+    puts "   2. List teas by type"
+    puts "   3. List teas by country"
+    puts "To exit this sisseion enter: exit"
   end
 end
 #  ./bin/teahead
