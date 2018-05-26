@@ -24,17 +24,4 @@ class Importer
     new_tea.western_instructions = {:water_temp => i[0], :grams_per_100ml_water => i[5], :first_infusion => i[6], :additional_infusions => i[7], :total_infusions => i[8]}
     print_info(new_tea)
   end
-
-  def self.print_info(obj, count)
-    puts count
-    puts obj
-    puts "#{obj.name}"
-    puts "#{obj.type}"
-    puts "#{obj.info}"
-    puts "#{obj.url}"
-    puts "------------------------------"
-    #puts "#{obj.notes}"
-    #puts "#{obj.gongfu_instructions}"
-    #puts "#{obj.western_instructions}"
-  end
 end
