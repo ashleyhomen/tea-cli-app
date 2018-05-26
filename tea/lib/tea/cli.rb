@@ -18,29 +18,35 @@ class Session
 
   def menu
     puts "what would you like to do?"
-    list_options
+    self.class.list_options
     input = nil
 
     while input != "exit"
       input = gets.strip.to_s.downcase
       if input == "menu"
-        list_options
+        self.class.list_options
       elsif input == "1"
         Teas.list_a_to_z
       elsif input == "2"
-        Teas.list_by_type(type)
+        puts "What type of tea would you like to see?"
+        Teas::TEA_TYPES.each {|type| puts type}
+        input = gets.strip.downcase
+        Teas.list_by_type(input)
       elsif input == "3"
-        Teas.list_by_country(country)
+        puts "Enter a country from the list"
+        Teas::COUNTRIES.each {|country| puts country}
+        input = gets.strip.downcase
+        Teas.list_by_country(input)
       elsif input == "exit"
         puts "Goodbye #{@name}!"
       else
         puts "Sorry, I didn't get that... Please enter a number from the list."
-        list_options
+        self.class.list_options
       end
     end
   end
 
-  def list_options
+  def self.list_options
     puts ""
     puts "   1. List all teas"
     puts "   2. List teas by type"

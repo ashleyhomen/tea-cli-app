@@ -15,23 +15,19 @@ class Teas
 
   def self.list_a_to_z
     self.all.each.with_index(1) { |t, i| print_tea_card(t, i)}
-    learn_more_message
+    learn_more
   end
 
-  def self.list_by_type
-    puts "What type of tea would you like to see?"
-    TEA_TYPES.each {|type| puts type}
-    input = gets
-    self.all.each.with_index(1) { |t, i| print_tea_card(t, i) if t.type == input}
-    learn_more_message
+  def self.list_by_type(input)
+    tea_array = self.all.select { |tea| tea.type == input}
+    tea_array.each.with_index(1) { |t, i| print_tea_card(t, i)}
+    learn_more
   end
 
   def self.list_by_country(input)
-    puts "Enter a country from the list"
-    COUNTRIES.each {|country| puts country}
-    input = gets
-    self.all.each.with_index(1) { |t, i| t.print_tea_card(t, i) if t.info.include?(input)}
-    learn_more_message
+    tea_array = self.all.select { |tea| tea.note.include?(input)}
+    tea_array.each.with_index(1) { |t, i| print_tea_card(t, i)}
+    learn_more
   end
 
   def self.print_tea_card(t, i = nil)
@@ -51,7 +47,7 @@ class Teas
       Importer.scrape_tea_profile(all[input - 1])
       print_tea_card(all[input - 1])
     else
-      list_options
+      Session.list_options
     end
   end
 end
