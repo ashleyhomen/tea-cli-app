@@ -1,29 +1,5 @@
 class Importer
 
-  def self.get_url(input)
-    if input == "green"
-      "https://meileaf.com/teas/green/"
-    elsif input == "black"
-      "https://meileaf.com/teas/black/"
-    elsif input == "oolong"
-      "https://meileaf.com/teas/oolong/"
-    elsif input == "yellow"
-      "https://meileaf.com/teas/yellow/"
-    elsif input == "white"
-      "https://meileaf.com/teas/white/"
-    elsif input == "puerh"
-      "https://meileaf.com/teas/ripened/"
-    elsif input == "china"
-      "https://meileaf.com/teas/china/"
-    elsif input == "japan"
-      "https://meileaf.com/teas/japan/"
-    elsif input == "taiwan"
-      "https://meileaf.com/teas/taiwan/"
-    else input == "all"
-      "https://meileaf.com/teas/"
-    end
-  end
-
   def self.scrape_teas
       puts "Here's a list of the teas you asked for."
       doc = Nokogiri::HTML(open('https://meileaf.com/teas/'))
