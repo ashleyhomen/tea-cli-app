@@ -14,7 +14,7 @@ class Session
     puts "   Please enter your name:"
     @name = gets.strip.capitalize
     puts "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
-    puts "   Hello #{@name}"
+    puts "   Hello #{@name}!"
   end
 
   def hub
