@@ -8,15 +8,16 @@
               # choose from sub-list
           # list by tea type
               # choose from sub-list
-    # imports based on input
-    # prints list of tea
-    # askd for input to see tea profile
-    # prints tea profile.
+    # eventually print a list of teas based on input 
+    # select a tea profile by index number 
+    # imports profile based on input
+    # prints tea profile
+    # clear navigation instructions
 
 
     ### next task ###
-     # check - Importer.scrape_teas
-     # debug - Teas.list_by_type
+     # check - look into scraping countries 
+     # debug - Teas.list_by_country
 
      #    ./bin/teahead
      #    ./bin/console
