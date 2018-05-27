@@ -1,6 +1,7 @@
 require_relative './concerns'
 class Session
   include Concerns::Menus
+  include Concerns::Messages
   attr_accessor :name
 
   def call
@@ -15,11 +16,11 @@ class Session
     @name = gets.strip.capitalize
     puts "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
     puts "   Hello #{@name}!"
+    request_input("number")
+    puts "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
   end
 
   def hub
-    request_input("number")
-    puts "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
     main_menu
     input = nil
     Importer.scrape_teas
@@ -36,9 +37,7 @@ class Session
       elsif input == "exit"
         nil
       else
-        puts "sorry, I didn't get that..."
-        request_input("number")
-        main_menu
+        invalid_input_message(3)
       end
     end
   end
