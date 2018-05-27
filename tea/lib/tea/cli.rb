@@ -3,7 +3,6 @@ class Session
   attr_accessor :name
 
   def call
-    Importer.scrape_teas
     greeting
     menu
   end
@@ -21,7 +20,7 @@ class Session
     puts "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
     self.class.list_options
     input = nil
-
+    Importer.scrape_teas
     while input != "exit"
       input = gets.strip.to_s.downcase
       if input == "menu"

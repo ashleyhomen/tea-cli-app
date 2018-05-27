@@ -54,6 +54,8 @@ class Teas
         puts "To see another profile enter: 1-#{array.size}"
         puts "To return to the main menu enter: menu"
         puts "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+      elsif input == "menu"
+        nil
       else
         puts "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
         puts "Sorry, I didn't get that!"
