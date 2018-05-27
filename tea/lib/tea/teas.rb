@@ -39,6 +39,31 @@ class Teas
     puts "______________________________________________________________________"
   end
 
+  def self.learn_more(array)
+    puts "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+    puts "To learn more about a tea enter the index number"
+    puts "To return to the main menu enter: menu"
+    puts "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+    input = nil
+    while input != "menu"
+    input = gets.strip
+      if (1..array.size) === input.to_i
+        Importer.scrape_tea_profile(array[input.to_i - 1])
+        print_tea_profile(array[input.to_i - 1])
+        puts "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+        puts "To see another profile enter: 1-#{array.size}"
+        puts "To return to the main menu enter: menu"
+        puts "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+      else
+        puts "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+        puts "Sorry, I didn't get that!"
+        puts "Please enter 1-#{array.size} or enter: menu"
+        puts "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+      end
+    end
+    Session.list_options
+  end
+
   def self.print_tea_profile(obj)
     puts "______________________________________________________________________"
     puts ""
@@ -61,24 +86,5 @@ class Teas
     puts "    WESTERN STEEPING INSTRUCTIONS:"
     obj.western_instructions.each { |k, v| puts "       #{k.to_s.split("_").join(" ")}: #{v}"}
     puts "______________________________________________________________________"
-  end
-
-  def self.learn_more(array)
-    puts "To learn more about a tea enter the index number"
-    puts "To return to the main menu enter: menu"
-    input = nil
-    while input != 0
-    input = gets.to_i
-      if (1..array.size) === input
-        Importer.scrape_tea_profile(array[input - 1])
-        print_tea_profile(array[input - 1])
-      elsif input == 0
-        nil
-      else
-        puts "Sorry, I didn't get that!"
-        puts "Please enter 1-#{array.size} or enter: menu"
-      end
-    end
-    Session.list_options
   end
 end
