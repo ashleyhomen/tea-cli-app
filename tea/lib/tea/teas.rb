@@ -83,7 +83,8 @@ class Teas
     end
     puts ""
     puts "    GONGFU STEEPING INSTRUCTIONS:"
-    obj.gongfu_instructions.each { |k, v| puts "       #{k.to_s.split("_").join(" ")}: #{v}"}
+    obj.gongfu_instructions.each { |k, v| puts "       #{k.to_s.split("_").join(" ")}: #{v}"
+  binding.pry}
     puts ""
     puts "    WESTERN STEEPING INSTRUCTIONS:"
     obj.western_instructions.each { |k, v| puts "       #{k.to_s.split("_").join(" ")}: #{v}"}
