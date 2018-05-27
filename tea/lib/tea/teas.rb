@@ -31,31 +31,37 @@ class Teas
   end
 
   def self.print_tea_card(t, i)
+    puts "______________________________________________________________________"
     puts "#{i}."
     puts "    Name: #{t.name}"
     puts "    AKA:  #{t.aka}" if t.aka != ""
     puts "    Type: #{t.type}"
-    puts "------------------------"
+    puts "______________________________________________________________________"
   end
 
-  def print_tea_profile(obj)
+  def self.print_tea_profile(obj)
+    puts "______________________________________________________________________"
     puts ""
-    puts "NAME: #{obj.name}"
-    puts "AKA:  #{obj.aka}" if t.aka != ""
-    puts "TYPE: #{obj.type}"
+    puts "    NAME: #{obj.name}"
+    puts "    AKA:  #{obj.aka}" if obj.aka != ""
+    puts "    TYPE: #{obj.type}"
     puts ""
     puts "    INFO:"
-    puts "    #{obj.info}"
+    puts "       #{obj.info}"
     puts ""
     puts "    TASTING NOTES:"
-    puts "    #{obj.notes}"
+    obj.notes.each do |note|
+      n = note.split(/\n/)
+      puts "    #{n[1]}: #{n[2]}"
+    end
     puts ""
     puts "    GONGFU STEEPING INSTRUCTIONS:"
-    obj.gongfu_instructions.each { |k, v| puts "    #{k}: #{v}"}
+    obj.gongfu_instructions.each { |k, v| puts "       #{k.to_s.split("_").join(" ")}: #{v}"}
+    puts ""
     puts "    WESTERN STEEPING INSTRUCTIONS:"
-    obj.western_instructions.each { |k, v| puts "    #{k}: #{v}"}
+    obj.western_instructions.each { |k, v| puts "       #{k.to_s.split("_").join(" ")}: #{v}"}
+    puts "______________________________________________________________________"
   end
-
 
   def self.learn_more(array)
     puts "To learn more about a tea enter the index number"
