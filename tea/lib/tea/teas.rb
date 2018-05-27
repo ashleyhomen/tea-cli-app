@@ -1,4 +1,5 @@
 class Teas
+  extend Concerns::Menus
   attr_accessor :name, :aka, :type, :info, :url, :notes, :gongfu_instructions, :western_instructions
   TEA_TYPES = ["White", "Green", "Yellow", "Oolong", "Black", "Puerh"]
   COUNTRIES = ["China", "Japan", "Taiwan"]
@@ -25,7 +26,7 @@ class Teas
   end
 
   def self.list_by_country(input)
-    tea_array = self.all.collect { |tea| tea.notes.include?(input.capitalize)}
+    tea_array = self.all.select { |tea| tea.notes.include?(input.capitalize)}
     tea_array.each.with_index(1) { |t, i| print_tea_card(t, i)}
     learn_more(tea_array)
   end
@@ -45,7 +46,7 @@ class Teas
     puts "To return to the main menu enter: menu"
     puts "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
     input = nil
-    while input != "menu"
+    while input != "menu" && input != "exit"
     input = gets.strip
       if (1..array.size) === input.to_i
         Importer.scrape_tea_profile(array[input.to_i - 1])
@@ -54,7 +55,7 @@ class Teas
         puts "To see another profile enter: 1-#{array.size}"
         puts "To return to the main menu enter: menu"
         puts "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
-      elsif input == "menu"
+      elsif input == "menu" || input == "exit"
         nil
       else
         puts "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
@@ -63,7 +64,7 @@ class Teas
         puts "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
       end
     end
-    Session.list_options
+    menu
   end
 
   def self.print_tea_profile(obj)
@@ -83,8 +84,7 @@ class Teas
     end
     puts ""
     puts "    GONGFU STEEPING INSTRUCTIONS:"
-    obj.gongfu_instructions.each { |k, v| puts "       #{k.to_s.split("_").join(" ")}: #{v}"
-  binding.pry}
+    obj.gongfu_instructions.each { |k, v| puts "       #{k.to_s.split("_").join(" ")}: #{v}"}
     puts ""
     puts "    WESTERN STEEPING INSTRUCTIONS:"
     obj.western_instructions.each { |k, v| puts "       #{k.to_s.split("_").join(" ")}: #{v}"}
