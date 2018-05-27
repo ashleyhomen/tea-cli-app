@@ -25,32 +25,53 @@ class Teas
   end
 
   def self.list_by_country(input)
-    tea_array = self.all.collect { |tea| tea.note.include?(input.capitalize)}
+    tea_array = self.all.collect { |tea| tea.notes.include?(input.capitalize)}
     tea_array.each.with_index(1) { |t, i| print_tea_card(t, i)}
     learn_more(tea_array)
   end
 
-  def self.print_tea_card(t, i = nil)
-    puts "#{i}." if i != nil
+  def self.print_tea_card(t, i)
+    puts "#{i}."
     puts "    Name: #{t.name}"
     puts "    AKA:  #{t.aka}" if t.aka != ""
     puts "    Type: #{t.type}"
-    puts "    Info: #{t.info}"
     puts "------------------------"
   end
+
+  def print_tea_profile(obj)
+    puts ""
+    puts "NAME: #{obj.name}"
+    puts "AKA:  #{obj.aka}" if t.aka != ""
+    puts "TYPE: #{obj.type}"
+    puts ""
+    puts "    INFO:"
+    puts "    #{obj.info}"
+    puts ""
+    puts "    TASTING NOTES:"
+    puts "    #{obj.notes}"
+    puts ""
+    puts "    GONGFU STEEPING INSTRUCTIONS:"
+    obj.gongfu_instructions.each { |k, v| puts "    #{k}: #{v}"}
+    puts "    WESTERN STEEPING INSTRUCTIONS:"
+    obj.western_instructions.each { |k, v| puts "    #{k}: #{v}"}
+  end
+
 
   def self.learn_more(array)
     puts "To learn more about a tea enter the index number"
     puts "To return to the main menu enter: menu"
-    input = nil 
-    while input != "menu"
+    input = nil
+    while input != 0
     input = gets.to_i
-    if (1..array.size) === input
-      Importer.scrape_tea_profile(array[input - 1])
-      print_tea_card(array[input - 1])
-    else
-      puts "Sorry, I didn't get that!"
-      puts "Please enter 1-#{array.size} or enter: menu"
+      if (1..array.size) === input
+        Importer.scrape_tea_profile(array[input - 1])
+        print_tea_profile(array[input - 1])
+      elsif input == 0
+        nil
+      else
+        puts "Sorry, I didn't get that!"
+        puts "Please enter 1-#{array.size} or enter: menu"
+      end
     end
     Session.list_options
   end
