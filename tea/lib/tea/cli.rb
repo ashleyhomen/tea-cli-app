@@ -8,62 +8,61 @@ class Session
   end
 
   def greeting
-    puts "Welcome Teahead!"
-    puts "Please enter your name:"
+    puts "   Welcome Teahead!"
+    puts "   Please enter your name:"
     @name = gets.strip.capitalize
     puts "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
     puts "   Hello #{@name}"
   end
 
   def menu
-    puts "   what would you like to do?"
+    self.class.request_input("number")
     puts "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
-    self.class.list_options
+    self.class.main_menu
     input = nil
     Importer.scrape_teas
     while input != "exit"
       input = gets.strip.to_s.downcase
-
       if input == "menu"
-        self.class.list_options
-
+        self.class.main_menu
       elsif input == "1"
         Teas.list_a_to_z
-
       elsif input == "2"
-        type_submenu
-
+        submenu(Teas::TEA_TYPES, "type")
       elsif input == "3"
-        puts "Enter a country from the list"
-        Teas::COUNTRIES.each {|country| puts country}
-        input = gets.strip.downcase
-        Teas.list_by_country(input)
-
+        submenu(Teas::COUNTRIES, "country")
       elsif input == "exit"
-        puts "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
-        puts "   Goodbye #{@name}!"
-        puts "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
-
+        goodbye
       else
-        invalid_input("number")
-        self.class.list_options
-
+        puts "sorry, I didn't get that..."
+        request_input("number")
+        self.class.main_menu
       end
     end
   end
 
-  def type_submenu
-    input = nil
-    puts "What type of tea would you like to see?"
-    Teas::TEA_TYPES.each {|type| puts type}
-    until Teas::TEA_TYPES.include?(input)
-      puts "Sorry, I didn't get that... Please enter a type from the list."
-      input = gets.strip.downcase
-    end
-    Teas.list_by_type(input) if Teas::TEA_TYPES.include?(input)
+  def goodbye
+    puts "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+    puts "   Goodbye #{@name}!"
+    puts "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
   end
 
-  def self.list_options
+  def submenu(list, item_type)
+    input = nil
+    until valid_input?(list, input)
+      self.class.request_input(item_type)
+      list.each {|item| puts item}
+      input = gets.strip.capitalize
+    end
+    Teas.list_by(item_type, input)
+  end
+
+  def valid_input?(list, input)
+    list.include?(input)
+    binding.pry
+  end
+
+  def self.main_menu
     puts ""
     puts "   1. List all teas"
     puts "   2. List teas by type"
@@ -71,8 +70,8 @@ class Session
     puts "   To exit this sisseion enter: exit"
   end
 
-  def self.invalid_input(item_type)
-    "Sorry, I didn't get that... Please enter a #{item_type} from the list."
+  def self.request_input(item_type)
+    puts "   Please enter a #{item_type} from the list."
   end
 end
 #  ./bin/teahead
