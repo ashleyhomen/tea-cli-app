@@ -19,6 +19,7 @@ module Concerns
       puts "*     1. List all teas                                                *"
       puts "*     2. List teas by type                                            *"
       puts "*     3. Find tea by name                                             *"
+      puts "*     4. Search by word or phrase                                     *"
       puts "*     To exit this sisseion enter: exit                               *"
       puts "*                                                                     *"
       puts "* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *"
@@ -68,13 +69,6 @@ module Concerns
       puts "To return to the list enter: list"
       puts "To return to the main menu enter: menu"
       puts "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
-    end
-  end
-
-  module Findables
-    def find_by_name
-      input = gets.downcase
-      self.all.detect{ |obj| obj.name == input}
     end
   end
 end

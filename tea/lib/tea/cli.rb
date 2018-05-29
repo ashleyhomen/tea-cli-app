@@ -34,6 +34,8 @@ class Session
         type_submenu
       elsif input == "3"
         Teas.find_by_name
+      elsif input == "4"
+        Teas.search
       elsif input == "exit"
         nil
       else

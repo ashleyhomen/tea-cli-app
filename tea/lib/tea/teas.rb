@@ -2,7 +2,6 @@ require_relative './concerns'
 class Teas
   extend Concerns::Menus
   extend Concerns::Messages
-  extend Concerns::Findables
   attr_accessor :name, :aka, :type, :info, :url, :notes, :gongfu_instructions, :western_instructions
 
   @@all = []
@@ -39,6 +38,15 @@ class Teas
     puts "Please enter a tea name"
     input = gets.strip.downcase
     tea_array = self.all.select {|obj| obj.name.downcase.include?(input) || obj.aka.downcase.include?(input)}
+    tea_array.each.with_index(1) { |t, i| print_tea_card(t, i)}
+    get_details_message
+    learn_more(tea_array)
+  end
+
+  def self.search
+    puts "Enter a phrase or word you would like to search for?"
+    input = gets.strip.downcase
+    tea_array = self.all.select {|obj| obj.name.downcase.include?(input) || obj.aka.downcase.include?(input) || obj.type.downcase.include?(input) || obj.info.downcase.include?(input)}
     tea_array.each.with_index(1) { |t, i| print_tea_card(t, i)}
     get_details_message
     learn_more(tea_array)
