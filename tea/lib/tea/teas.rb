@@ -35,10 +35,13 @@ class Teas
     learn_more(tea_array)
   end
 
-  def find_by_name
+  def self.find_by_name
     puts "Please enter a tea name"
-    input = gets.downcase
-    self.all.detect{ |obj| obj.name == input or obj.aka == input}
+    input = gets.strip.downcase
+    tea_array = self.all.select {|obj| obj.name.downcase.include?(input) || obj.aka.downcase.include?(input)}
+    tea_array.each.with_index(1) { |t, i| print_tea_card(t, i)}
+    get_details_message
+    learn_more(tea_array)
   end
 
   def self.print_tea_card(t, i)

@@ -33,7 +33,7 @@ class Session
       elsif input == "2"
         type_submenu
       elsif input == "3"
-        country_submenu
+        Teas.find_by_name
       elsif input == "exit"
         nil
       else

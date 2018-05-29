@@ -2,7 +2,7 @@ module Concerns
 
   module Menus
     TEA_TYPES = ["White", "Green", "Yellow", "Oolong", "Black", "Puerh"]
-    COUNTRIES = ["China", "Japan", "Taiwan"]
+    #COUNTRIES = ["China", "Japan", "Taiwan"]
 
     def request_input(item_type)
       puts "   Please enter a #{item_type} from the list."
@@ -76,4 +76,5 @@ module Concerns
       input = gets.downcase
       self.all.detect{ |obj| obj.name == input}
     end
+  end
 end
