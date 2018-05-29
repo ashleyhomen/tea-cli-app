@@ -28,6 +28,7 @@ class Teas
   end
 
   def self.find_by_name
+    binding.pry
     puts "Please enter a tea name"
     input = gets.strip.downcase
     tea_array = self.all.select {|obj| obj.name.downcase.include?(input) || obj.aka.downcase.include?(input)}
@@ -85,18 +86,22 @@ class Teas
     puts "    INFO:"
     puts "       #{obj.info}"
     puts ""
-    puts "    TASTING NOTES:"
+    puts "    TASTING NOTES:" if obj.notes != []
     obj.notes.pop
     obj.notes.each do |note|
       n = note.split(/\n/).delete_if(&:empty?)
       puts "       #{n[0]}: #{n[1]}"
     end
     puts ""
-    puts "    GONGFU STEEPING INSTRUCTIONS:"
-    obj.gongfu_instructions.each { |k, v| puts "       #{k.to_s.upcase.gsub("_"," ")}: #{v.gsub("    ","")}"}
-    puts ""
-    puts "    WESTERN STEEPING INSTRUCTIONS:"
-    obj.western_instructions.each { |k, v| puts "       #{k.to_s.upcase.gsub("_"," ")}: #{v.gsub("    ","")}"}
+    if obj.gongfu_instructions[:first_infusion] != nil
+      puts "    GONGFU STEEPING INSTRUCTIONS:"
+      obj.gongfu_instructions.each { |k, v| puts "       #{k.to_s.upcase.gsub("_"," ")}: #{v.gsub("    ","")}"}
+      puts ""
+    end
+    if obj.western_instructions[:first_infusion] != nil
+      puts "    WESTERN STEEPING INSTRUCTIONS:"
+      obj.western_instructions.each { |k, v| puts "       #{k.to_s.upcase.gsub("_"," ")}: #{v.gsub("    ","")}"}
+    end
     puts "______________________________________________________________________"
   end
 end
