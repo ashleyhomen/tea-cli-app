@@ -1,7 +1,7 @@
 module Concerns
 
   module Menus
-    TEA_TYPES = ["White", "Green", "Yellow", "Oolong", "Black", "Puerh", "Tisanes"]
+    TEA_TYPES = ["White", "Green", "Yellow", "Oolong", "Black", "Puerh", "Blend", "Tisanes"]
 
     def request_input(item_type)
       puts "   Please enter a #{item_type} from the list."
