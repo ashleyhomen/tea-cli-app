@@ -16,7 +16,8 @@ class Importer
     path = obj.url
     i = []
     doc = Nokogiri::HTML(open(path))
-    obj.notes = doc.css('div.product-tasting-notes dl').text.split('.')
+    obj.notes = doc.css('div.product-tasting-notes dl').text.gsub("    ","").gsub("  ","").split('.').delete_if(&:empty?)
+    obj.origin = doc.css('span.squiggle').text.gsub("    ","").gsub("  ","").split(/\n/).delete_if(&:empty?)[2]
     doc.css('td.brewing-instructions__td').each {|item| i << item.text.split(" ").join(" | ").gsub("&plus;","+")}
     obj.gongfu_instructions = {:water_temp => i[0], :grams_per_100ml_water => i[1], :first_infusion => i[2], :additional_infusions => i[3], :total_infusions => i[4]}
     obj.western_instructions = {:water_temp => i[0], :grams_per_100ml_water => i[5], :first_infusion => i[6], :additional_infusions => i[7], :total_infusions => i[8]}

@@ -2,7 +2,7 @@ require_relative './concerns'
 class Teas
   extend Concerns::Menus
   extend Concerns::Messages
-  attr_accessor :name, :aka, :type, :info, :url, :notes, :gongfu_instructions, :western_instructions
+  attr_accessor :name, :aka, :type, :info, :url, :notes, :origin, :gongfu_instructions, :western_instructions
 
   @@all = []
 
@@ -21,14 +21,7 @@ class Teas
   end
 
   def self.list_by_type(input)
-    tea_array = self.all.select { |tea| tea.type == input}
-    tea_array.each.with_index(1) { |t, i| print_tea_card(t, i)}
-    get_details_message
-    learn_more(tea_array)
-  end
-
-  def self.list_by_country(input)
-    tea_array = self.all.select { |tea| tea.notes.include?(input)}
+    tea_array = self.all.select { |tea| tea.type.include?(input)}
     tea_array.each.with_index(1) { |t, i| print_tea_card(t, i)}
     get_details_message
     learn_more(tea_array)
@@ -87,21 +80,23 @@ class Teas
     puts "    NAME: #{obj.name}"
     puts "    AKA:  #{obj.aka}" if obj.aka != ""
     puts "    TYPE: #{obj.type}"
+    puts "    ORIGIN: #{obj.origin}"
     puts ""
     puts "    INFO:"
     puts "       #{obj.info}"
     puts ""
     puts "    TASTING NOTES:"
+    obj.notes.pop
     obj.notes.each do |note|
-      n = note.split(/\n/)
-      puts "    #{n[1]}: #{n[2]}"
+      n = note.split(/\n/).delete_if(&:empty?)
+      puts "       #{n[0]}: #{n[1]}"
     end
     puts ""
     puts "    GONGFU STEEPING INSTRUCTIONS:"
-    obj.gongfu_instructions.each { |k, v| puts "       #{k.to_s.split("_").join(" ")}: #{v}"}
+    obj.gongfu_instructions.each { |k, v| puts "       #{k.to_s.upcase.gsub("_"," ")}: #{v.gsub("    ","")}"}
     puts ""
     puts "    WESTERN STEEPING INSTRUCTIONS:"
-    obj.western_instructions.each { |k, v| puts "       #{k.to_s.split("_").join(" ")}: #{v}"}
+    obj.western_instructions.each { |k, v| puts "       #{k.to_s.upcase.gsub("_"," ")}: #{v.gsub("    ","")}"}
     puts "______________________________________________________________________"
   end
 end

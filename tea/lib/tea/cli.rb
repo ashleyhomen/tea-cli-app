@@ -39,7 +39,7 @@ class Session
       elsif input == "exit"
         nil
       else
-        invalid_input_message(3)
+        invalid_input_message(4)
       end
     end
   end

@@ -1,8 +1,7 @@
 module Concerns
 
   module Menus
-    TEA_TYPES = ["White", "Green", "Yellow", "Oolong", "Black", "Puerh"]
-    #COUNTRIES = ["China", "Japan", "Taiwan"]
+    TEA_TYPES = ["White", "Green", "Yellow", "Oolong", "Black", "Puerh", "Tisanes"]
 
     def request_input(item_type)
       puts "   Please enter a #{item_type} from the list."
@@ -33,19 +32,21 @@ module Concerns
         TEA_TYPES.each {|item| puts "      #{item}"}
         input = gets.strip.capitalize
       end
-      Teas.list_by_type(input)
+      puerh_submenu if input == "Puerh"
+      Teas.list_by_type(input) if input != "Puerh"
     end
 
-    def country_submenu
-      input = nil
-      until TEA_TYPES.include?(input)
-        request_input("country")
-        COUNTRIES.each {|item| puts "      #{item}"}
-        input = gets.strip.capitalize
-      end
-      Teas.list_by_country(input)
+  def puerh_submenu
+    input = nil
+    until input == "Ripened" || input == "Raw"
+      request_input("type")
+      puts "      Raw"
+      puts "      Ripened"
+      input = gets.strip.capitalize
     end
+    Teas.list_by_type(input)
   end
+end
 
   module Messages
 
