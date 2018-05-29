@@ -4,20 +4,15 @@
   # gives a menu to choose from
       # choose from a list
           # list all teas a-z
-          # list teas by country
+          # list teas by type
               # choose from sub-list
-          # list by tea type
-              # choose from sub-list
-    # eventually print a list of teas based on input 
-    # select a tea profile by index number 
+          # find by name
+          # search by phrase or word
+    # eventually print a list of teas based on input
+    # select a tea profile by index number
     # imports profile based on input
     # prints tea profile
     # clear navigation instructions
-
-
-    ### next task ###
-     # check - look into scraping countries 
-     # debug - Teas.list_by_country
 
      #    ./bin/teahead
      #    ./bin/console
