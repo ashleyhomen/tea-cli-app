@@ -7,10 +7,6 @@ module Concerns
       puts "   Please enter a #{item_type} from the list."
     end
 
-    def valid_input?(list, input)
-      list.include?(input) || input == "menu"
-    end
-
     def main_menu
       puts ""
       puts "* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *"
