@@ -1,7 +1,7 @@
 require_relative './concerns'
-class Session
-  include Concerns::Menus
-  include Concerns::Messages
+class Tea::Session
+  include Tea::Concerns::Menus
+  include Tea::Concerns::Messages
   attr_accessor :name
 
   def call
@@ -23,19 +23,19 @@ class Session
   def hub
     main_menu
     input = nil
-    Importer.scrape_teas
+    Tea::Importer.scrape_teas
     while input != "exit"
       input = gets.strip.to_s.downcase
       if input == "menu"
         main_menu
       elsif input == "1"
-        Teas.list_a_to_z
+        Tea::Teas.list_a_to_z
       elsif input == "2"
         type_submenu
       elsif input == "3"
-        Teas.find_by_name
+        Tea::Teas.find_by_name
       elsif input == "4"
-        Teas.search
+        Tea::Teas.search
       elsif input == "exit"
         nil
       else

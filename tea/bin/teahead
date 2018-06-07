@@ -2,4 +2,4 @@
 require "bundler/setup"
 require "environment"
 
-Session.new.call
+Tea::Session.new.call

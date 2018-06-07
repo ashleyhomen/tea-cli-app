@@ -1,7 +1,7 @@
 require_relative './concerns'
-class Teas
-  extend Concerns::Menus
-  extend Concerns::Messages
+class Tea::Teas
+  extend Tea::Concerns::Menus
+  extend Tea::Concerns::Messages
   attr_accessor :name, :aka, :type, :info, :url, :notes, :origin, :gongfu_instructions, :western_instructions
 
   @@all = []
@@ -31,18 +31,28 @@ class Teas
     puts "Please enter a tea name"
     input = gets.strip.downcase
     tea_array = self.all.select {|obj| obj.name.downcase.include?(input) || obj.aka.downcase.include?(input)}
+    if tea_array.empty?
+      main_menu
+      puts "Sorry, no teas matched your search"
+    else
     tea_array.each.with_index(1) { |t, i| print_tea_card(t, i)}
     get_details_message
     learn_more(tea_array)
+    end
   end
 
   def self.search
     puts "Enter a phrase or word you would like to search for?"
     input = gets.strip.downcase
     tea_array = self.all.select {|obj| obj.name.downcase.include?(input) || obj.aka.downcase.include?(input) || obj.type.downcase.include?(input) || obj.info.downcase.include?(input)}
-    tea_array.each.with_index(1) { |t, i| print_tea_card(t, i)}
-    get_details_message
-    learn_more(tea_array)
+    if tea_array.empty?
+      main_menu
+      puts "Sorry, no teas matched your search"
+    else
+      tea_array.each.with_index(1) { |t, i| print_tea_card(t, i)}
+      get_details_message
+      learn_more(tea_array)
+    end
   end
 
   def self.print_tea_card(t, i)
@@ -60,7 +70,7 @@ class Teas
     input = gets.strip
       if (1..array.size) === input.to_i
         if array[input.to_i - 1].origin == nil
-          Importer.scrape_tea_profile(array[input.to_i - 1])
+          Tea::Importer.scrape_tea_profile(array[input.to_i - 1])
         end
         print_tea_profile(array[input.to_i - 1])
         see_more_message(array.size)

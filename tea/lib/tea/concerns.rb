@@ -1,4 +1,4 @@
-module Concerns
+module Tea::Concerns
 
   module Menus
     TEA_TYPES = ["White", "Green", "Yellow", "Oolong", "Black", "Puerh", "Blend", "Tisanes"]
@@ -29,7 +29,7 @@ module Concerns
         input = gets.strip.capitalize
       end
       puerh_submenu if input == "Puerh"
-      Teas.list_by_type(input) if input != "Puerh"
+      Tea::Teas.list_by_type(input) if input != "Puerh"
     end
 
   def puerh_submenu
@@ -40,7 +40,7 @@ module Concerns
       puts "      Ripened"
       input = gets.strip.capitalize
     end
-    Teas.list_by_type(input)
+    Tea::Teas.list_by_type(input)
   end
 end
 
