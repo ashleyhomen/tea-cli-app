@@ -1,5 +1,5 @@
-require_relative './tea/cli'
-require_relative './tea/store'
+require_relative './tea/session'
+require_relative './tea/importer'
 require_relative './tea/teas'
 require_relative './tea/version'
 require_relative './tea/concerns'
