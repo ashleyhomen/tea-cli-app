@@ -59,7 +59,9 @@ class Teas
     while input != "menu"
     input = gets.strip
       if (1..array.size) === input.to_i
-        Importer.scrape_tea_profile(array[input.to_i - 1])
+        if array[input.to_i - 1].origin == nil
+          Importer.scrape_tea_profile(array[input.to_i - 1])
+        end
         print_tea_profile(array[input.to_i - 1])
         see_more_message(array.size)
       elsif input == "list"
